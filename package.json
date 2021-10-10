@@ -1,9 +1,15 @@
 {
 	"name": "@averagehelper/job-queue",
-	"version": "0.9.2",
+	"version": "0.9.3",
 	"description": "A simple queue for processing asynchronous tasks sequentially.",
-	"main": "./lib/legacy/index.cjs",
-	"exports": "./lib/exports/index.js",
+	"main": "./lib/legacy/index.js",
+	"exports": {
+		"node": {
+			"import": "./lib/exports/index.js",
+			"require": "./lib/legacy/index.js"
+		},
+		"default": "./lib/exports/index.js"
+	},
 	"types": "./lib/exports",
 	"type": "module",
 	"scripts": {
