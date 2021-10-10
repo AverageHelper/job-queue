@@ -1,0 +1,41 @@
+{
+	"name": "@averagehelper/job-queue",
+	"version": "1.0.0",
+	"description": "A simple queue for processing asynchronous tasks sequentially.",
+	"main": "./lib/legacy/index.cjs",
+	"exports": "./lib/modern/index.js",
+	"type": "module",
+	"scripts": {
+		"build": "rm -rf ./lib && tsc --project tsconfig.legacy.json && tsc --project tsconfig.prod.json",
+		"test": "jest --coverage",
+		"prepublishOnly": "npm test && npm run build"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/AverageHelper/job-queue.git"
+	},
+	"author": "AverageHelper",
+	"license": "SEE LICENSE IN LICENSE",
+	"bugs": {
+		"url": "https://github.com/AverageHelper/job-queue/issues"
+	},
+	"homepage": "https://github.com/AverageHelper/job-queue#readme",
+	"devDependencies": {
+		"@types/jest": "^27.0.2",
+		"@types/node": "^16.10.3",
+		"@typescript-eslint/eslint-plugin": "^4.33.0",
+		"@typescript-eslint/parser": "^4.33.0",
+		"eslint": "^7.32.0",
+		"eslint-config-prettier": "^8.3.0",
+		"eslint-config-strictest": "^0.3.1",
+		"eslint-plugin-jest": "^24.6.0",
+		"eslint-plugin-node": "^11.1.0",
+		"eslint-plugin-prettier": "^4.0.0",
+		"eslint-plugin-promise": "^5.1.0",
+		"eslint-plugin-unicorn": "^36.0.0",
+		"jest": "^27.2.5",
+		"jest-environment-node": "^27.2.5",
+		"jest-extended": "^0.11.5",
+		"ts-jest": "^27.0.5"
+	}
+}
