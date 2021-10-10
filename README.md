@@ -70,7 +70,6 @@ We welcome contributions of all sorts!
 ## Built With
 
 - [Visual Studio Code](https://code.visualstudio.com/)
-- [Discord.js](https://discord.js.org/)
 - Love
 
 ## Authors
