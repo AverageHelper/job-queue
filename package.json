@@ -1,6 +1,6 @@
 {
 	"name": "@averagehelper/job-queue",
-	"version": "0.9.6",
+	"version": "1.0.0",
 	"description": "A simple queue for processing asynchronous tasks sequentially.",
 	"main": "./lib/legacy/index.cjs",
 	"exports": {
