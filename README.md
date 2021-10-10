@@ -4,7 +4,7 @@ A simple queue for processing asynchronous tasks sequentially.
 
 ## Dependencies
 
-This project requires [NodeJS](https://nodejs.org/) (version 14 or later). There are no other dependencies.
+This project requires [NodeJS](https://nodejs.org/) (version 14 or later).
 To make sure you have them available on your machine,
 try running the following command:
 
