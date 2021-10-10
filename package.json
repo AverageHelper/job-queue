@@ -5,6 +5,7 @@
 	"main": "./lib/legacy/index.cjs",
 	"exports": "./lib/modern/index.js",
 	"type": "module",
+	"types": "./lib/modern",
 	"scripts": {
 		"build": "rm -rf ./lib && tsc --project tsconfig.legacy.json && tsc --project tsconfig.prod.json",
 		"test": "jest --coverage",
@@ -19,6 +20,10 @@
 	"bugs": {
 		"url": "https://github.com/AverageHelper/job-queue/issues"
 	},
+	"files": [
+		"lib",
+		"LICENSE"
+	],
 	"homepage": "https://github.com/AverageHelper/job-queue#readme",
 	"devDependencies": {
 		"@types/jest": "^27.0.2",
