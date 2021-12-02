@@ -1,6 +1,6 @@
 {
 	"name": "@averagehelper/job-queue",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "A simple queue for processing asynchronous tasks sequentially.",
 	"main": "./lib/legacy/index.cjs",
 	"exports": {
@@ -13,7 +13,7 @@
 	"types": "./lib/exports",
 	"type": "module",
 	"scripts": {
-		"build:cjs": "tsc --project tsconfig.legacy.json && mv ./lib/legacy/index.js ./lib/legacy/index.cjs && mv ./lib/legacy/index.js.map ./lib/legacy/index.cjs.map",
+		"build:cjs": "tsc --project tsconfig.legacy.json && mv ./lib/legacy/index.js ./lib/legacy/index.cjs",
 		"build:esm": "tsc --project tsconfig.prod.json",
 		"build": "rm -rf ./lib && npm run build:cjs && npm run build:esm",
 		"test": "jest --coverage",
