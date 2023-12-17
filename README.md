@@ -67,10 +67,7 @@ We welcome contributions of all sorts!
 5.  Push to the branch: `git push origin my-new-feature`
 6.  Submit a pull request :sunglasses:
 
-## Built With
-
-- [Visual Studio Code](https://code.visualstudio.com/)
-- Love
+This project lives primarily at [git.average.name](https://git.average.name/AverageHelper/job-queue). A read-only mirror also exists on [GitHub](https://github.com/AverageHelper/job-queue). Issues or pull requests should be filed at [git.average.name](https://git.average.name/AverageHelper/job-queue). You may sign in or create an account directly, or use one of several OAuth 2.0 providers.
 
 ## Authors
 
@@ -78,4 +75,4 @@ We welcome contributions of all sorts!
 
 ## License
 
-[GNU General Public License v3.0](LICENSE)
+[MIT](LICENSE)
