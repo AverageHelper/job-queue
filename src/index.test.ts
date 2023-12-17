@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, test, vi } from "vitest";
 import { useJobQueue, jobQueues, JobQueue } from ".";
 
 describe("Job queue", () => {
@@ -62,7 +63,7 @@ describe("Job queue", () => {
 
 	test("calls a callback for each work item", async () => {
 		const queue = useJobQueue<number>(queueKey);
-		const cb = jest.fn().mockImplementation(async () => {
+		const cb = vi.fn().mockImplementation(async () => {
 			await new Promise(resolve => setTimeout(resolve, 100));
 		});
 		queue.process(cb);
@@ -87,7 +88,7 @@ describe("Job queue", () => {
 
 	test("calls callback items in order", async () => {
 		const queue = useJobQueue<number>(queueKey);
-		const cb = jest.fn().mockImplementation(async (arg: number) => {
+		const cb = vi.fn().mockImplementation(async (arg: number) => {
 			/* eslint-disable no-console */
 			console.debug(`Started processing ${arg}`);
 			await new Promise(resolve => setTimeout(resolve, 100));
@@ -113,8 +114,8 @@ describe("Job queue", () => {
 
 	test("calls a callback when finished", async () => {
 		const queue = useJobQueue<number>(queueKey);
-		const cb = jest.fn();
-		const onFinished = jest.fn();
+		const cb = vi.fn();
+		const onFinished = vi.fn();
 
 		queue.createJobs([1, 2, 3]);
 		queue.on("finish", onFinished);
@@ -129,8 +130,8 @@ describe("Job queue", () => {
 
 	test("calls a callback on error", async () => {
 		const queue = useJobQueue<number>(queueKey);
-		const cb = jest.fn().mockRejectedValueOnce("throw me");
-		const onError = jest.fn();
+		const cb = vi.fn().mockRejectedValueOnce("throw me");
+		const onError = vi.fn();
 
 		queue.createJobs([1, 2, 3]);
 		queue.on("error", onError);
@@ -146,8 +147,8 @@ describe("Job queue", () => {
 
 	test("doesn't call the error callback if the callback was removed", async () => {
 		const queue = new JobQueue<number>(null);
-		const cb = jest.fn().mockRejectedValue("throw me");
-		const onError = jest.fn().mockResolvedValue(true);
+		const cb = vi.fn().mockRejectedValue("throw me");
+		const onError = vi.fn().mockResolvedValue(true);
 
 		queue.createJobs([1, 2, 3]);
 		queue.on("error", onError);
@@ -164,8 +165,8 @@ describe("Job queue", () => {
 
 	test("calls the error callback for every failing job", async () => {
 		const queue = useJobQueue<number>(queueKey);
-		const cb = jest.fn().mockRejectedValue("throw me");
-		const onError = jest.fn().mockResolvedValue(true);
+		const cb = vi.fn().mockRejectedValue("throw me");
+		const onError = vi.fn().mockResolvedValue(true);
 
 		queue.createJobs([1, 2, 3]);
 		queue.on("error", onError);
@@ -183,8 +184,8 @@ describe("Job queue", () => {
 
 	test("optionally cancels remaining items based on the result of the error callback", async () => {
 		const queue = useJobQueue<number>(queueKey);
-		const cb = jest.fn().mockRejectedValueOnce("throw me");
-		const onError = jest.fn().mockReturnValue(false);
+		const cb = vi.fn().mockRejectedValueOnce("throw me");
+		const onError = vi.fn().mockReturnValue(false);
 
 		queue.createJobs([1, 2, 3]);
 		queue.on("error", onError);
@@ -201,8 +202,8 @@ describe("Job queue", () => {
 
 	test("optionally awaits the result of the error callback, and cancels remaining items if false", async () => {
 		const queue = useJobQueue<number>(queueKey);
-		const cb = jest.fn().mockRejectedValueOnce("throw me");
-		const onError = jest.fn().mockResolvedValue(false);
+		const cb = vi.fn().mockRejectedValueOnce("throw me");
+		const onError = vi.fn().mockResolvedValue(false);
 
 		queue.createJobs([1, 2, 3]);
 		queue.on("error", onError);
@@ -219,11 +220,11 @@ describe("Job queue", () => {
 
 	test("runs worker functions sequentially", async () => {
 		const queue = useJobQueue<number>(queueKey);
-		const cb = jest.fn();
+		const cb = vi.fn();
 
-		queue.createJobs(new Array(500).fill(1)); // add first batch
+		queue.createJobs(new Array<number>(500).fill(1)); // add first batch
 		queue.process(cb); // start processing
-		queue.createJobs(new Array(500).fill(2)); // add second batch
+		queue.createJobs(new Array<number>(500).fill(2)); // add second batch
 
 		// Wait for the queue to finish
 		await new Promise<void>(resolve => queue.on("finish", resolve));
@@ -237,11 +238,11 @@ describe("Job queue", () => {
 
 	test("processes new work items sequentially", async () => {
 		const queue = useJobQueue<number>(queueKey);
-		const cb = jest.fn();
+		const cb = vi.fn();
 
 		queue.process(cb); // start processing
-		queue.createJobs(new Array(500).fill(1)); // add first batch
-		queue.createJobs(new Array(500).fill(2)); // add second batch
+		queue.createJobs(new Array<number>(500).fill(1)); // add first batch
+		queue.createJobs(new Array<number>(500).fill(2)); // add second batch
 
 		// Wait for the queue to finish
 		await new Promise<void>(resolve => queue.on("finish", resolve));
@@ -255,8 +256,8 @@ describe("Job queue", () => {
 
 	test("doesn't call a start callback when the callback was removed", async () => {
 		const queue = useJobQueue<number>(queueKey);
-		const cb = jest.fn();
-		const onStart = jest.fn();
+		const cb = vi.fn();
+		const onStart = vi.fn();
 
 		queue.on("start", onStart);
 		expect(onStart).not.toHaveBeenCalled();
@@ -277,8 +278,8 @@ describe("Job queue", () => {
 
 	test("calls a start callback when work starts", async () => {
 		const queue = useJobQueue<number>(queueKey);
-		const cb = jest.fn();
-		const onStart = jest.fn();
+		const cb = vi.fn();
+		const onStart = vi.fn();
 
 		queue.on("start", onStart);
 		expect(onStart).not.toHaveBeenCalled();
@@ -296,8 +297,8 @@ describe("Job queue", () => {
 
 	test("doesn't call finish if the callback was removed", async () => {
 		const queue = useJobQueue<number>(queueKey);
-		const cb = jest.fn();
-		const onFinish = jest.fn();
+		const cb = vi.fn();
+		const onFinish = vi.fn();
 
 		queue.on("finish", onFinish);
 		expect(onFinish).not.toHaveBeenCalled();
@@ -316,9 +317,9 @@ describe("Job queue", () => {
 
 	test("calls finish only after start", async () => {
 		const queue = useJobQueue<number>(queueKey);
-		const cb = jest.fn();
-		const onStart = jest.fn();
-		const onFinish = jest.fn();
+		const cb = vi.fn();
+		const onStart = vi.fn();
+		const onFinish = vi.fn();
 
 		queue.on("start", onStart);
 		queue.on("finish", onFinish);

@@ -1,0 +1,31 @@
+# On PR toward `main`: run builds, run tests
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        node: [16.x, 18.x, 20.x]
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Check that build succeeds
+        run: npm run build
+
+      - name: Run unit tests
+        run: npm test

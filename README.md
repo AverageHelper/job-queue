@@ -4,7 +4,7 @@ A simple queue for processing asynchronous tasks sequentially.
 
 ## Dependencies
 
-This project requires [NodeJS](https://nodejs.org/) (version 14 or later).
+This project requires [NodeJS](https://nodejs.org/) (version 16 or later).
 To make sure you have them available on your machine,
 try running the following command:
 
@@ -74,7 +74,7 @@ We welcome contributions of all sorts!
 
 ## Authors
 
-- **James Robinson** ([AverageHelper](https://github.com/AverageHelper)) - _Initial work_
+- [**AverageHelper**](https://git.average.name/AverageHelper) - _Initial work_
 
 ## License
 

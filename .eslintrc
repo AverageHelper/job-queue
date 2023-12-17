@@ -8,12 +8,19 @@
 		"strictest/typescript-eslint",
 		"strictest/unicorn",
 		"eslint:recommended",
-		"plugin:jest/recommended",
+		"plugin:vitest/recommended",
 		"plugin:@typescript-eslint/recommended",
 		"plugin:@typescript-eslint/recommended-requiring-type-checking",
 		"plugin:prettier/recommended"
 	],
-	"plugins": ["prettier", "unicorn", "promise", "@typescript-eslint"],
+	"plugins": [
+		"file-progress",
+		"deprecation",
+		"prettier",
+		"unicorn",
+		"promise",
+		"@typescript-eslint"
+	],
 	"parser": "@typescript-eslint/parser",
 	"parserOptions": {
 		"project": "./tsconfig.prod.json",
@@ -23,14 +30,14 @@
 		"node": true
 	},
 	"rules": {
+		"file-progress/activate": 1,
+		"deprecation/deprecation": "warn",
 		"prettier/prettier": "warn",
 		"no-constant-condition": "warn",
 		"no-console": "warn",
 		"no-dupe-else-if": "warn",
 		"consistent-return": "off", // TS handles this
-		"no-duplicate-imports": "off", // typescript-eslint handles this
-		"@typescript-eslint/no-duplicate-imports": "error",
-		"@typescript-eslint/no-implicit-any-catch": "error",
+		"no-duplicate-imports": "error",
 		"@typescript-eslint/no-empty-interface": "off",
 		"@typescript-eslint/require-await": "warn",
 		"@typescript-eslint/no-inferrable-types": "off",
@@ -52,7 +59,13 @@
 
 	"overrides": [
 		{
-			"files": ["src/**/*.test.ts", "tests/**/*.ts", "**/__mocks__/**/*.ts"],
+			"files": [
+				"./*.ts",
+				"./scripts/**/*.ts",
+				"src/**/*.test.ts",
+				"tests/**/*.ts",
+				"**/__mocks__/**/*.ts"
+			],
 			"extends": ["plugin:prettier/recommended"],
 			"plugins": ["prettier", "@typescript-eslint"],
 			"parser": "@typescript-eslint/parser",
@@ -60,22 +73,9 @@
 				"project": "./tsconfig.test.json",
 				"tsconfigRootDir": "."
 			},
-			"env": {
-				"jest": true
-			},
 			"rules": {
 				"prettier/prettier": "warn",
 				"max-nested-callbacks": "off" // Unit tests involve a lot of nested callbacks
-			}
-		},
-		{
-			"files": ["*.js"],
-			"parser": "null"
-		},
-		{
-			"files": ["database/migrations/*.ts"],
-			"rules": {
-				"unicorn/filename-case": "off"
 			}
 		}
 	]

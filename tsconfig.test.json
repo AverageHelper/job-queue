@@ -2,7 +2,8 @@
 	"extends": "./tsconfig.base.json",
 	"compilerOptions": {
 		"noEmit": true,
-		"types": ["node", "jest", "jest-extended"]
+		"target": "ES2022",
+		"module": "ES2022"
 	},
-	"include": ["src/**/*.ts", "tests/**/*.ts", "src/**/*.json"]
+	"include": ["./*.ts", "scripts/**/*.ts", "src/**/*.ts", "tests/**/*.ts", "src/**/*.json"]
 }
