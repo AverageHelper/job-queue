@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.0] - 2024-02-19
+### Changed
+- Changed type of exported `jobQueues` map to `ReadonlyMap`. This constraint is only enforced by TypeScript at build time, not run time, so please don't do anything silly with this.
+
 ## [2.1.0] - 2024-02-19
 ### Changed
 - Removed `events` package dependency. Turns out that functionality is built into Node! No more runtime dependencies yay!!
@@ -30,6 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial release.
 
+[3.0.0]: https://git.average.name/AverageHelper/job-queue/compare/v2.1.0...v3.0.0
 [2.1.0]: https://git.average.name/AverageHelper/job-queue/compare/v2.0.1...v2.1.0
 [2.0.1]: https://git.average.name/AverageHelper/job-queue/compare/v2.0.0...v2.0.1
 [2.0.0]: https://git.average.name/AverageHelper/job-queue/compare/v1.0.1...v2.0.0

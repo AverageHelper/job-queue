@@ -1,11 +1,11 @@
 import { beforeEach, describe, expect, test, vi } from "vitest";
-import { useJobQueue, jobQueues, JobQueue } from "./index.js";
+import { useJobQueue, jobQueues, JobQueue, forgetJobQueue } from "./index.js";
 
 describe("Job queue", () => {
 	const queueKey = "queue1234";
 
 	beforeEach(() => {
-		jobQueues.clear();
+		(jobQueues as Map<unknown, unknown>).clear();
 	});
 
 	test("begins with zero elements", () => {
@@ -336,5 +336,19 @@ describe("Job queue", () => {
 		await new Promise<void>(resolve => queue.on("finish", resolve));
 		expect(onStart).toHaveBeenCalledTimes(1);
 		expect(onFinish).toHaveBeenCalledTimes(1);
+	});
+
+	test("does nothing to forget an unknown job queue", () => {
+		expect(jobQueues).toHaveLength(0);
+		forgetJobQueue("foo");
+		expect(jobQueues).toHaveLength(0);
+	});
+
+	test("forgets a given job queue", () => {
+		expect(jobQueues).toHaveLength(0);
+		useJobQueue("foo");
+		expect(jobQueues).toHaveLength(1);
+		forgetJobQueue("foo");
+		expect(jobQueues).toHaveLength(0);
 	});
 });

@@ -138,8 +138,10 @@ export class JobQueue<Job = never> {
 	}
 }
 
+const _jobQueues = new Map<string, JobQueue<unknown>>();
+
 /** The collection of keyed job queues. */
-export const jobQueues = new Map<string, JobQueue<unknown>>();
+export const jobQueues: ReadonlyMap<string, JobQueue<unknown>> = _jobQueues;
 
 /**
  * Returns the keyed job queue for the given key.
@@ -152,7 +154,7 @@ export function useJobQueue<T = never>(key: string): JobQueue<T> {
 
 	if (!queue) {
 		queue = new JobQueue();
-		jobQueues.set(key, queue as JobQueue<unknown>);
+		_jobQueues.set(key, queue as JobQueue<unknown>);
 	}
 
 	return queue;
@@ -167,5 +169,6 @@ export function forgetJobQueue(key: string): void {
 	const queue = jobQueues.get(key);
 	if (!queue) return;
 
-	jobQueues.delete(key);
+	// TODO: Halt all work on the queue somehow
+	_jobQueues.delete(key);
 }
