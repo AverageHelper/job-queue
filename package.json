@@ -1,6 +1,6 @@
 {
 	"name": "@averagehelper/job-queue",
-	"version": "2.0.1",
+	"version": "2.1.0",
 	"description": "A simple queue for processing asynchronous tasks sequentially.",
 	"main": "./lib/legacy/index.cjs",
 	"exports": {
@@ -13,8 +13,8 @@
 	"types": "./lib/exports",
 	"type": "module",
 	"scripts": {
-		"build:cjs": "./node_modules/.bin/tsc --project tsconfig.legacy.json && mv ./lib/legacy/index.js ./lib/legacy/index.cjs",
-		"build:esm": "./node_modules/.bin/tsc --project tsconfig.prod.json",
+		"build:cjs": "./node_modules/.bin/tsc -P tsconfig.legacy.json && mv ./lib/legacy/index.js ./lib/legacy/index.cjs",
+		"build:esm": "./node_modules/.bin/tsc -P tsconfig.prod.json",
 		"build": "rm -rf ./lib && npm run build:cjs && npm run build:esm",
 		"prebuild": "npm run lint",
 		"lint": "./node_modules/.bin/eslint . --ext .ts",
@@ -38,15 +38,12 @@
 		"lib",
 		"LICENSE"
 	],
-	"dependencies": {
-		"events": "3.3.0"
-	},
 	"engines": {
-		"node": "^16.0.0, ^18.0.0, ^20.0.0"
+		"node": "^16.0.0 || ^18.0.0 || ^20.0.0"
 	},
 	"devDependencies": {
 		"@types/node": "18.19.3",
-		"@types/semver": "7.5.6",
+		"@types/semver": "7.5.7",
 		"@typescript-eslint/eslint-plugin": "6.14.0",
 		"@typescript-eslint/parser": "6.14.0",
 		"@vitest/coverage-v8": "1.0.4",
@@ -62,7 +59,7 @@
 		"eslint-plugin-vitest": "0.3.17",
 		"keep-a-changelog": "2.5.3",
 		"prettier": "3.1.1",
-		"semver": "7.5.4",
+		"semver": "7.6.0",
 		"superstruct": "1.0.3",
 		"tsx": "4.6.2",
 		"typescript": "5.3.3",

@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, test, vi } from "vitest";
-import { useJobQueue, jobQueues, JobQueue } from ".";
+import { useJobQueue, jobQueues, JobQueue } from "./index.js";
 
 describe("Job queue", () => {
 	const queueKey = "queue1234";
