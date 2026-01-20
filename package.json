@@ -1,6 +1,6 @@
 {
 	"name": "@averagehelper/job-queue",
-	"version": "3.0.0",
+	"version": "3.0.1",
 	"description": "A simple queue for processing asynchronous tasks sequentially.",
 	"main": "./lib/legacy/index.cjs",
 	"exports": {
@@ -39,7 +39,7 @@
 		"LICENSE"
 	],
 	"engines": {
-		"node": "^16.0.0 || ^18.0.0 || ^20.0.0"
+		"node": ">= 16.0.0"
 	},
 	"devDependencies": {
 		"@types/node": "18.19.3",
