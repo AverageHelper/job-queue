@@ -23,7 +23,7 @@ function requireEnv(key: string): string {
 logger.info("** createRelease.ts **");
 
 // Load env vars
-const accessToken = requireEnv("FORGEJO_ACCESS_TOKEN");
+const accessToken = requireEnv("RELEASES_TOKEN");
 const ciRepo = requireEnv("GITHUB_REPOSITORY"); // repository full name (`<owner>/<name>`)
 const repoReleases = `https://git.average.name/api/v1/repos/${ciRepo}/releases`;
 logger.info(`Releases API: ${repoReleases}`);
